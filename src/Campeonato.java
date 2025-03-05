@@ -1,6 +1,7 @@
+import java.io.*;
 import java.util.*;
 
-public class Campeonato implements Jugable{
+public class Campeonato implements Jugable, Serializable{
     private String nombre;
     private Set<Equipo> equipos;
     private List<Partido> partidos;
@@ -10,7 +11,23 @@ public class Campeonato implements Jugable{
         this.nombre = nombre;
         this.equipos = new HashSet<>();
         this.partidos = new ArrayList<>();
-        this.clasificacion = new TreeMap<>(); //<-- esto lo facilitaremos
+        this.clasificacion = new TreeMap<>();
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public Set<Equipo> getEquipos() {
+        return equipos;
+    }
+
+    public List<Partido> getPartidos() {
+        return partidos;
+    }
+
+    public Map<Equipo, Integer> getClasificacion() {
+        return clasificacion;
     }
 
     @Override
@@ -40,12 +57,27 @@ public class Campeonato implements Jugable{
     }
 
     @Override
-    public void mostrarClasificacion() {
-        System.out.println("Clasificación del Campeonato: " + nombre);
+    public String mostrarClasificacion() {
+        String resultado = "Clasificación del Campeonato: " + nombre + "\n";
         for(Equipo equipos1: clasificacion.keySet()){
-            System.out.println(equipos1.getNombre() + " - Puntos: " + clasificacion.get(equipos1));
+            resultado += equipos1.getNombre() + " - Puntos: " + clasificacion.get(equipos1) + "\n";
         }
+        return resultado;
     }
+
+    @Override
+    public List<Equipo> mostrarGanador() {
+        List<Equipo> ganadores = new ArrayList<>();
+        List<Integer> puntos = new ArrayList<>(clasificacion.values());
+        Collections.sort(puntos);
+        int max = puntos.get(puntos.size()-1);
+        for(Equipo equipos1: clasificacion.keySet()){
+            if(clasificacion.get(equipos1)==max)
+                ganadores.add(equipos1);
+        }
+        return ganadores;
+    }
+
 
     @Override
     public String toString() {

@@ -18,11 +18,11 @@ public class Main {
         equipo2.agregarJugador(new JugadorBaloncesto("Davinia López", Posicion.PIVOT));
 
         Equipo equipo3 = new EquipoBaloncesto("Lliria");
-        equipo1.agregarJugador(new JugadorBaloncesto("Vicent Peris", Posicion.ALERO));
-        equipo1.agregarJugador(new JugadorBaloncesto("Joaquín Sáez", Posicion.PIVOT));
-        equipo1.agregarJugador(new JugadorBaloncesto("Josep Romero", Posicion.BASE));
-        equipo1.agregarJugador(new JugadorBaloncesto("Carmelo Gómez", Posicion.ALERO));
-        equipo1.agregarJugador(new JugadorBaloncesto("Nancho Nuovo", Posicion.PIVOT));
+        equipo3.agregarJugador(new JugadorBaloncesto("Vicent Peris", Posicion.ALERO));
+        equipo3.agregarJugador(new JugadorBaloncesto("Joaquín Sáez", Posicion.PIVOT));
+        equipo3.agregarJugador(new JugadorBaloncesto("Josep Romero", Posicion.BASE));
+        equipo3.agregarJugador(new JugadorBaloncesto("Carmelo Gómez", Posicion.ALERO));
+        equipo3.agregarJugador(new JugadorBaloncesto("Nancho Nuovo", Posicion.PIVOT));
 
         // Agregar equipos al campeonato
         campeonato.agregarEquipo(equipo1);
@@ -60,9 +60,18 @@ public class Main {
         campeonato.agregarPartido(partido6);
 
         // Mostrar clasificación
-        campeonato.mostrarClasificacion();
+        System.out.println(campeonato.mostrarClasificacion());
 
         // Mostrar detalles del campeonato
         System.out.println(campeonato);
+
+        GestorFicheros.guardarCampeonato("campeonato.dat",campeonato);
+        Jugable campeonato1 = GestorFicheros.cargarCampeonato("campeonato.dat");
+
+        System.out.println(campeonato1);
+        GestorFicheros.guardarEquiposCampeonatoCSV("fichero.csv",campeonato);
+
+        System.out.println(campeonato1.mostrarGanador());
+
     }
 }

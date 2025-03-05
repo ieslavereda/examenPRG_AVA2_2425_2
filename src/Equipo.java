@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
-public abstract class Equipo implements Comparable<Equipo>{
+public abstract class Equipo implements Comparable<Equipo>, Serializable {
     private String nombre;
     private Set<Jugador> jugadores;
 

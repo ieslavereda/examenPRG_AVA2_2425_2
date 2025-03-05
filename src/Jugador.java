@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Jugador implements Comparable<Jugador>{
+public abstract class Jugador implements Comparable<Jugador>, Serializable {
     private String nombre;
 
     public Jugador(String nombre) {

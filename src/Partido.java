@@ -1,4 +1,6 @@
-public class Partido {
+import java.io.Serializable;
+
+public class Partido implements Serializable {
     private Equipo equipoLocal;
     private Equipo equipoVisitante;
     private int puntosLocal;
