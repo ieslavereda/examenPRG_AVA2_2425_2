@@ -1,6 +1,7 @@
 import java.util.Comparator;
 
 public class JugadorBaloncesto extends Jugador{
+
     public static final Comparator<JugadorBaloncesto> POR_POSICION = new Comparator<JugadorBaloncesto>() {
         @Override
         public int compare(JugadorBaloncesto jugador1, JugadorBaloncesto jugador2) {

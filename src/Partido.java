@@ -18,6 +18,15 @@ public class Partido implements Serializable {
         this.puntosVisitante = puntosVisitante;
     }
 
+    public boolean participa(Equipo equipo){
+        return equipoLocal.equals(equipo) || equipoVisitante.equals(equipo);
+    }
+
+    public Equipo getGanador(){
+        if(puntosLocal>puntosVisitante) return equipoLocal;
+        else return equipoVisitante;
+    }
+
     public Equipo getEquipoLocal() {
         return equipoLocal;
     }

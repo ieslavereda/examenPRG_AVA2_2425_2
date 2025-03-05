@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Campeonato implements Jugable, Serializable{
+public class Campeonato implements Jugable, Serializable {
     private String nombre;
     private Set<Equipo> equipos;
     private List<Partido> partidos;
@@ -58,21 +58,48 @@ public class Campeonato implements Jugable, Serializable{
 
     @Override
     public String mostrarClasificacion() {
-        String resultado = "Clasificación del Campeonato: " + nombre + "\n";
-        for(Equipo equipos1: clasificacion.keySet()){
-            resultado += equipos1.getNombre() + " - Puntos: " + clasificacion.get(equipos1) + "\n";
-        }
+        String resultado = "Clasificación del Campeonato: " + nombre + "\n"+
+                            "Equipo"+"\tPts"+"\tPJ"+"\tPG"+"\tPP"+"\n";
+
+        for (ClasificacionItem cla : obtenerClasificacion())
+            resultado += cla.toString() + "\n";
+
         return resultado;
+    }
+
+
+    private List<ClasificacionItem> obtenerClasificacion(){
+        Map<Equipo, ClasificacionItem> clasificacion = new HashMap<>();
+
+        equipos.stream()
+                .peek(equipo -> clasificacion.put(equipo, new ClasificacionItem(equipo)))
+                .forEach(e -> {
+                    partidos.forEach(p -> {
+                        if (p.getGanador().equals(e))
+                            clasificacion.get(e).ganaPartido();
+                        else
+                            clasificacion.get(e).pierdePartido();
+
+                    });
+                });
+
+        List<ClasificacionItem> clasificacionFinal = new ArrayList<>(clasificacion.values());
+        Collections.sort(clasificacionFinal);
+
+        return clasificacionFinal;
     }
 
     @Override
     public List<Equipo> mostrarGanador() {
+
+//        return obtenerClasificacion().get(0);
+
         List<Equipo> ganadores = new ArrayList<>();
         List<Integer> puntos = new ArrayList<>(clasificacion.values());
         Collections.sort(puntos);
-        int max = puntos.get(puntos.size()-1);
-        for(Equipo equipos1: clasificacion.keySet()){
-            if(clasificacion.get(equipos1)==max)
+        int max = puntos.get(puntos.size() - 1);
+        for (Equipo equipos1 : clasificacion.keySet()) {
+            if (clasificacion.get(equipos1) == max)
                 ganadores.add(equipos1);
         }
         return ganadores;

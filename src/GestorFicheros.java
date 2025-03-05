@@ -1,6 +1,7 @@
 import java.io.*;
 
 public class GestorFicheros {
+
     public static void guardarCampeonato(String fichero, Jugable campeonato){
         try(ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(fichero))){
             objectOutputStream.writeObject(campeonato);
