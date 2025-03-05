@@ -5,7 +5,7 @@ public class Campeonato implements Jugable, Serializable {
     private String nombre;
     private Set<Equipo> equipos;
     private List<Partido> partidos;
-    private Map<Equipo, Integer> clasificacion;
+    private Map<Equipo, Clasificacion> clasificacion;
 
     public Campeonato(String nombre) {
         this.nombre = nombre;
@@ -26,34 +26,19 @@ public class Campeonato implements Jugable, Serializable {
         return partidos;
     }
 
-    public Map<Equipo, Integer> getClasificacion() {
+    public Map<Equipo, Clasificacion> getClasificacion() {
         return clasificacion;
     }
 
     @Override
     public void agregarEquipo(Equipo equipo) {
         equipos.add(equipo);
-        clasificacion.put(equipo, 0); // Inicializa los puntos del equipo a 0
+        clasificacion.put(equipo, new Clasificacion(equipo)); // Inicializa equipo
     }
 
     @Override
     public void agregarPartido(Partido partido) {
         partidos.add(partido);
-        actualizarClasificacion(partido);
-    }
-
-    private void actualizarClasificacion(Partido partido) {
-        int puntosLocal = partido.getPuntosLocal();
-        int puntosVisitante = partido.getPuntosVisitante();
-
-        if (puntosLocal > puntosVisitante) {
-            clasificacion.put(partido.getEquipoLocal(), clasificacion.get(partido.getEquipoLocal()) + 3);
-        } else if (puntosLocal < puntosVisitante) {
-            clasificacion.put(partido.getEquipoVisitante(), clasificacion.get(partido.getEquipoVisitante()) + 3);
-        } else {
-            clasificacion.put(partido.getEquipoLocal(), clasificacion.get(partido.getEquipoLocal()) + 1);
-            clasificacion.put(partido.getEquipoVisitante(), clasificacion.get(partido.getEquipoVisitante()) + 1);
-        }
     }
 
     @Override
@@ -61,29 +46,26 @@ public class Campeonato implements Jugable, Serializable {
         String resultado = "Clasificación del Campeonato: " + nombre + "\n"+
                             "Equipo"+"\tPts"+"\tPJ"+"\tPG"+"\tPP"+"\n";
 
-        for (ClasificacionItem cla : obtenerClasificacion())
+        for (Clasificacion cla : obtenerClasificacion())
             resultado += cla.toString() + "\n";
 
         return resultado;
     }
 
 
-    private List<ClasificacionItem> obtenerClasificacion(){
-        Map<Equipo, ClasificacionItem> clasificacion = new HashMap<>();
-
+    private List<Clasificacion> obtenerClasificacion(){
         equipos.stream()
-                .peek(equipo -> clasificacion.put(equipo, new ClasificacionItem(equipo)))
+                .peek(equipo -> clasificacion.put(equipo, new Clasificacion(equipo)))
                 .forEach(e -> {
                     partidos.forEach(p -> {
                         if (p.getGanador().equals(e))
                             clasificacion.get(e).ganaPartido();
                         else
                             clasificacion.get(e).pierdePartido();
-
                     });
                 });
 
-        List<ClasificacionItem> clasificacionFinal = new ArrayList<>(clasificacion.values());
+        List<Clasificacion> clasificacionFinal = new ArrayList<>(clasificacion.values());
         Collections.sort(clasificacionFinal);
 
         return clasificacionFinal;
@@ -92,16 +74,16 @@ public class Campeonato implements Jugable, Serializable {
     @Override
     public List<Equipo> mostrarGanador() {
 
-//        return obtenerClasificacion().get(0);
+        int max = obtenerClasificacion().get(0).getPuntos();
 
         List<Equipo> ganadores = new ArrayList<>();
-        List<Integer> puntos = new ArrayList<>(clasificacion.values());
-        Collections.sort(puntos);
-        int max = puntos.get(puntos.size() - 1);
-        for (Equipo equipos1 : clasificacion.keySet()) {
-            if (clasificacion.get(equipos1) == max)
-                ganadores.add(equipos1);
+
+        //buscamos todos los ganadores
+        for(Clasificacion clasificacion :obtenerClasificacion()){
+            if(clasificacion.getPuntos()==max)
+                ganadores.add(clasificacion.getEquipo());
         }
+
         return ganadores;
     }
 

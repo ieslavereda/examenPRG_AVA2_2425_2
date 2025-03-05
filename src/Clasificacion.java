@@ -1,10 +1,12 @@
-public class ClasificacionItem implements Comparable<ClasificacionItem> {
+import java.io.Serializable;
+
+public class Clasificacion implements Comparable<Clasificacion>, Serializable {
 
     private Equipo equipo;
     private int partidosGanados;
     private int partidosPerdidos;
 
-    public ClasificacionItem(Equipo equipo) {
+    public Clasificacion(Equipo equipo) {
         this.equipo = equipo;
         this.partidosGanados = 0;
         this.partidosPerdidos = 0;
@@ -33,8 +35,8 @@ public class ClasificacionItem implements Comparable<ClasificacionItem> {
 
     public void ganaPartido(){
         this.partidosGanados++;
-
     }
+
     public void pierdePartido(){
         this.partidosPerdidos++;
     }
@@ -42,7 +44,7 @@ public class ClasificacionItem implements Comparable<ClasificacionItem> {
     @Override
     public boolean equals(Object obj) {
 
-        if (obj instanceof ClasificacionItem cla)
+        if (obj instanceof Clasificacion cla)
             return this.equipo.equals(cla.equipo);
 
         return false;
@@ -54,7 +56,7 @@ public class ClasificacionItem implements Comparable<ClasificacionItem> {
     }
 
     @Override
-    public int compareTo(ClasificacionItem c) {
+    public int compareTo(Clasificacion c) {
         if(getPuntos()==c.getPuntos()){
             return c.getPartidosGanados()-getPartidosGanados();
         }else
