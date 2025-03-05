@@ -54,16 +54,26 @@ public class Campeonato implements Jugable, Serializable {
 
 
     private List<Clasificacion> obtenerClasificacion(){
-        equipos.stream()
-                .peek(equipo -> clasificacion.put(equipo, new Clasificacion(equipo)))
-                .forEach(e -> {
-                    partidos.forEach(p -> {
-                        if (p.getGanador().equals(e))
-                            clasificacion.get(e).ganaPartido();
-                        else
-                            clasificacion.get(e).pierdePartido();
-                    });
-                });
+//        equipos.stream()
+//                .peek(equipo -> clasificacion.put(equipo, new Clasificacion(equipo)))
+//                .forEach(e -> {
+//                    partidos.forEach(p -> {
+//                        if (p.getGanador().equals(e))
+//                            clasificacion.get(e).ganaPartido();
+//                        else
+//                            clasificacion.get(e).pierdePartido();
+//                    });
+//                });
+
+        for(Equipo e : equipos)
+            clasificacion.put(e, clasificacion.get(e));
+
+        for(Equipo e : equipos)
+            for(Partido p : partidos)
+                if(p.getGanador().equals(e))
+                    clasificacion.get(e).ganaPartido();
+                else
+                    clasificacion.get(e).pierdePartido();
 
         List<Clasificacion> clasificacionFinal = new ArrayList<>(clasificacion.values());
         Collections.sort(clasificacionFinal);
