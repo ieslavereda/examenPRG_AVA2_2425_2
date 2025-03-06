@@ -1,3 +1,5 @@
+package model;
+
 import java.io.*;
 import java.util.*;
 
@@ -5,13 +7,11 @@ public class Campeonato implements Jugable, Serializable {
     private String nombre;
     private Set<Equipo> equipos;
     private List<Partido> partidos;
-    private Map<Equipo, Clasificacion> clasificacion;
 
     public Campeonato(String nombre) {
         this.nombre = nombre;
         this.equipos = new HashSet<>();
         this.partidos = new ArrayList<>();
-        this.clasificacion = new TreeMap<>();
     }
 
     public String getNombre() {
@@ -26,14 +26,9 @@ public class Campeonato implements Jugable, Serializable {
         return partidos;
     }
 
-    public Map<Equipo, Clasificacion> getClasificacion() {
-        return clasificacion;
-    }
-
     @Override
     public void agregarEquipo(Equipo equipo) {
         equipos.add(equipo);
-        clasificacion.put(equipo, new Clasificacion(equipo)); // Inicializa equipo
     }
 
     @Override
@@ -44,7 +39,7 @@ public class Campeonato implements Jugable, Serializable {
     @Override
     public String mostrarClasificacion() {
         String resultado = "Clasificación del Campeonato: " + nombre + "\n"+
-                            "Equipo"+"\tPts"+"\tPJ"+"\tPG"+"\tPP"+"\n";
+                            "Equipo"+"\tPT"+"\tPJ"+"\tPG"+"\tPP"+"\n";
 
         for (Clasificacion cla : obtenerClasificacion())
             resultado += cla.toString() + "\n";
@@ -54,8 +49,11 @@ public class Campeonato implements Jugable, Serializable {
 
 
     private List<Clasificacion> obtenerClasificacion(){
+
+        Map<Equipo,Clasificacion> clasificacion = new HashMap<>();
+
 //        equipos.stream()
-//                .peek(equipo -> clasificacion.put(equipo, new Clasificacion(equipo)))
+//                .peek(equipo -> clasificacion.put(equipo, new model.Clasificacion(equipo)))
 //                .forEach(e -> {
 //                    partidos.forEach(p -> {
 //                        if (p.getGanador().equals(e))
@@ -66,7 +64,7 @@ public class Campeonato implements Jugable, Serializable {
 //                });
 
         for(Equipo e : equipos)
-            clasificacion.put(e, clasificacion.get(e));
+            clasificacion.put(e, new Clasificacion(e));
 
         for(Equipo e : equipos)
             for(Partido p : partidos)

@@ -1,6 +1,8 @@
+package model;
+
 import java.util.Comparator;
 
-public class JugadorBaloncesto extends Jugador{
+public class JugadorBaloncesto extends Jugador {
 
     public static final Comparator<JugadorBaloncesto> POR_POSICION = new Comparator<JugadorBaloncesto>() {
         @Override

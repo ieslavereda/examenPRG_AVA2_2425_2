@@ -1,3 +1,5 @@
+package model;
+
 public enum Posicion {
     BASE("base"), ALERO("alero"), PIVOT("pivot");
     private String descripcion;

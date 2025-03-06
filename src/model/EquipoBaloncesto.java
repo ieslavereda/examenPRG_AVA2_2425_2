@@ -1,7 +1,10 @@
+package model;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class EquipoBaloncesto extends Equipo{
+
     public EquipoBaloncesto(String nombre) {
         super(nombre);
     }

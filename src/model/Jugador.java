@@ -1,3 +1,5 @@
+package model;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -13,10 +15,9 @@ public abstract class Jugador implements Comparable<Jugador>, Serializable {
         return nombre;
     }
 
-
     @Override
     public String toString() {
-        return "Jugador: "+nombre;
+        return "model.Jugador: "+nombre;
     }
 
     @Override

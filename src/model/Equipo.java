@@ -1,9 +1,12 @@
+package model;
+
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
 public abstract class Equipo implements Comparable<Equipo>, Serializable {
+
     private String nombre;
     private Set<Jugador> jugadores;
 
@@ -26,7 +29,7 @@ public abstract class Equipo implements Comparable<Equipo>, Serializable {
 
     @Override
     public String toString() {
-        return "Equipo: " + nombre + " Jugadores: " + jugadores;
+        return "model.Equipo: " + nombre + " Jugadores: " + jugadores;
     }
 
     @Override

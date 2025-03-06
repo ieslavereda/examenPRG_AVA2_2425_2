@@ -1,3 +1,8 @@
+import model.Campeonato;
+import model.Equipo;
+import model.Jugable;
+import model.Jugador;
+
 import java.io.*;
 
 public class GestorFicheros {
