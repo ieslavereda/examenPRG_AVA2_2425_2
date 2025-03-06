@@ -1,9 +1,7 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Objects;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public abstract class Equipo implements Comparable<Equipo>, Serializable {
 
@@ -23,8 +21,10 @@ public abstract class Equipo implements Comparable<Equipo>, Serializable {
         return nombre;
     }
 
-    public Set<Jugador> getJugadores() {
-        return jugadores;
+    public List<Jugador> obtenerJugadores() {
+        List<Jugador> jugadoresList = new ArrayList<>(jugadores);
+        Collections.sort(jugadoresList);
+        return jugadoresList;
     }
 
     @Override

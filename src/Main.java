@@ -2,36 +2,36 @@ import model.*;
 
 public class Main {
     public static void main(String[] args) {
-        Campeonato campeonato = new Campeonato("Liga Comarcal - Camp de Túria");
+        Campeonato campeonato = new Campeonato("Autonomico");
 
         // Crear equipos
-        Equipo equipo1 = new EquipoBaloncesto("Pobla");
-        equipo1.agregarJugador(new JugadorBaloncesto("Pepe Gómez", Posicion.ALERO));
-        equipo1.agregarJugador(new JugadorBaloncesto("Antonio David", Posicion.PIVOT));
-        equipo1.agregarJugador(new JugadorBaloncesto("Miquel Jordano", Posicion.ALERO));
-        equipo1.agregarJugador(new JugadorBaloncesto("Manuel Pimienta", Posicion.ALERO));
-        equipo1.agregarJugador(new JugadorBaloncesto("Dionisio Man", Posicion.PIVOT));
+        Equipo equipo1 = new EquipoBaloncesto("Pobla BC");
+        equipo1.agregarJugador(new Jugador("Pepe G.", Posicion.ALERO));
+        equipo1.agregarJugador(new Jugador("Antonio D.", Posicion.PIVOT));
+        equipo1.agregarJugador(new Jugador("Miquel J.", Posicion.ALERO));
+        equipo1.agregarJugador(new Jugador("Manuel P.", Posicion.ALERO));
+        equipo1.agregarJugador(new Jugador("Dionisio M.", Posicion.PIVOT));
 
-        Equipo equipo2 = new EquipoBaloncesto("Eliana");
-        equipo2.agregarJugador(new JugadorBaloncesto("Luna Curra", Posicion.BASE));
-        equipo2.agregarJugador(new JugadorBaloncesto("Blanca Romero", Posicion.ALERO));
-        equipo2.agregarJugador(new JugadorBaloncesto("Pepa Cano", Posicion.PIVOT));
-        equipo2.agregarJugador(new JugadorBaloncesto("Andrea Ramírez", Posicion.ALERO));
-        equipo2.agregarJugador(new JugadorBaloncesto("Davinia López", Posicion.PIVOT));
+        EquipoBaloncesto equipo2 = new EquipoBaloncesto("Eliana BC");
+        equipo2.agregarJugador(new Jugador("Luna C.", Posicion.BASE));
+        equipo2.agregarJugador(new Jugador("Blanca R.", Posicion.ALERO));
+        equipo2.agregarJugador(new Jugador("Pepa C.", Posicion.PIVOT));
+        equipo2.agregarJugador(new Jugador("Andrea R.", Posicion.ALERO));
+        equipo2.agregarJugador(new Jugador("Davinia L.", Posicion.PIVOT));
 
-        Equipo equipo3 = new EquipoBaloncesto("Lliria");
-        equipo3.agregarJugador(new JugadorBaloncesto("Vicent Peris", Posicion.ALERO));
-        equipo3.agregarJugador(new JugadorBaloncesto("Joaquín Sáez", Posicion.PIVOT));
-        equipo3.agregarJugador(new JugadorBaloncesto("Josep Romero", Posicion.BASE));
-        equipo3.agregarJugador(new JugadorBaloncesto("Carmelo Gómez", Posicion.ALERO));
-        equipo3.agregarJugador(new JugadorBaloncesto("Nancho Nuovo", Posicion.PIVOT));
+        Equipo equipo3 = new EquipoBaloncesto("Lliria BC");
+        equipo3.agregarJugador(new Jugador("Vicent P.", Posicion.ALERO));
+        equipo3.agregarJugador(new Jugador("Joaquín S.", Posicion.PIVOT));
+        equipo3.agregarJugador(new Jugador("Josep R.", Posicion.BASE));
+        equipo3.agregarJugador(new Jugador("Carmelo G.", Posicion.ALERO));
+        equipo3.agregarJugador(new Jugador("Nancho N.", Posicion.PIVOT));
 
         // Agregar equipos al campeonato
         campeonato.agregarEquipo(equipo1);
         campeonato.agregarEquipo(equipo2);
         campeonato.agregarEquipo(equipo3);
 
-        System.out.println(((EquipoBaloncesto) equipo2).getJugadoresPorPosicion());
+        System.out.println(equipo2.getJugadoresPorPosicion());
         System.out.println(equipo1);
 
         // Crear partidos

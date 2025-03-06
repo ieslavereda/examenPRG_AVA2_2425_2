@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.*;
 
 public class Campeonato implements Jugable, Serializable {
+
     private String nombre;
     private Set<Equipo> equipos;
     private List<Partido> partidos;
@@ -39,7 +40,7 @@ public class Campeonato implements Jugable, Serializable {
     @Override
     public String mostrarClasificacion() {
         String resultado = "Clasificación del Campeonato: " + nombre + "\n"+
-                            "Equipo"+"\tPT"+"\tPJ"+"\tPG"+"\tPP"+"\n";
+                            "Equipo"+"\t\tPT"+"\tPJ"+"\tPG"+"\tPP"+"\n";
 
         for (Clasificacion cla : obtenerClasificacion())
             resultado += cla.toString() + "\n";
@@ -52,6 +53,8 @@ public class Campeonato implements Jugable, Serializable {
 
         Map<Equipo,Clasificacion> clasificacion = new HashMap<>();
 
+//        Solucion con Streams
+//
 //        equipos.stream()
 //                .peek(equipo -> clasificacion.put(equipo, new model.Clasificacion(equipo)))
 //                .forEach(e -> {
@@ -63,6 +66,7 @@ public class Campeonato implements Jugable, Serializable {
 //                    });
 //                });
 
+//        Solucion iterativa
         for(Equipo e : equipos)
             clasificacion.put(e, new Clasificacion(e));
 

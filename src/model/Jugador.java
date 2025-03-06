@@ -1,14 +1,31 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Objects;
 
-public abstract class Jugador implements Comparable<Jugador>, Serializable {
+public class Jugador implements Comparable<Jugador>, Serializable {
+
+    public static final Comparator<Jugador> POR_POSICION = new Comparator<Jugador>() {
+        @Override
+        public int compare(Jugador j1, Jugador j2) {
+            if(j1.getPosicion()!=j2.getPosicion())
+                return j1.getPosicion().compareTo(j2.getPosicion());
+
+            return j1.getNombre().compareToIgnoreCase(j2.getNombre());
+        }
+    };
 
     private String nombre;
+    private Posicion posicion;
 
-    public Jugador(String nombre) {
+    public Jugador(String nombre,Posicion posicion) {
         this.nombre = nombre;
+        this.posicion = posicion;
+    }
+
+    public Posicion getPosicion() {
+        return posicion;
     }
 
     public String getNombre() {
@@ -17,7 +34,7 @@ public abstract class Jugador implements Comparable<Jugador>, Serializable {
 
     @Override
     public String toString() {
-        return "model.Jugador: "+nombre;
+        return "Jugador: "+nombre;
     }
 
     @Override
