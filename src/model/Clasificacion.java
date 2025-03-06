@@ -59,8 +59,10 @@ public class Clasificacion implements Comparable<Clasificacion>, Serializable {
 
     @Override
     public int compareTo(Clasificacion c) {
+
         if(getPuntos()!=c.getPuntos())
             return c.getPuntos()-getPuntos();
+
         if(getPartidosGanados()!=c.getPartidosGanados())
             return c.getPartidosGanados()-getPartidosGanados();
 
