@@ -1,3 +1,5 @@
+package model;
+
 import java.io.Serializable;
 
 public class Clasificacion implements Comparable<Clasificacion>, Serializable {
@@ -57,9 +59,13 @@ public class Clasificacion implements Comparable<Clasificacion>, Serializable {
 
     @Override
     public int compareTo(Clasificacion c) {
-        if(getPuntos()==c.getPuntos()){
-            return c.getPartidosGanados()-getPartidosGanados();
-        }else
+
+        if(getPuntos()!=c.getPuntos())
             return c.getPuntos()-getPuntos();
+
+        if(getPartidosGanados()!=c.getPartidosGanados())
+            return c.getPartidosGanados()-getPartidosGanados();
+
+        return equipo.getNombre().compareToIgnoreCase(c.getEquipo().getNombre());
     }
 }

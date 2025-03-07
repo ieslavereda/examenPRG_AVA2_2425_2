@@ -1,3 +1,8 @@
+import model.Campeonato;
+import model.Equipo;
+import model.Jugable;
+import model.Jugador;
+
 import java.io.*;
 
 public class GestorFicheros {
@@ -24,7 +29,7 @@ public class GestorFicheros {
         try(BufferedWriter br = new BufferedWriter(new FileWriter(fichero))){
             for(Equipo equipo:campeonato.getEquipos()){
                 String linea = campeonato.getNombre() + ";" + equipo.getNombre();
-                for(Jugador jugador: equipo.getJugadores()){
+                for(Jugador jugador: equipo.obtenerJugadores()){
                      linea += ";" + jugador.getNombre();
                 }
                 br.write(linea);

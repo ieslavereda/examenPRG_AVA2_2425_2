@@ -1,3 +1,5 @@
+package model;
+
 import java.io.Serializable;
 
 public class Partido implements Serializable {
@@ -13,7 +15,11 @@ public class Partido implements Serializable {
         this.puntosVisitante = 0;
     }
 
-    public void setResultado(int puntosLocal, int puntosVisitante) {
+    public void setResultado(int puntosLocal, int puntosVisitante) throws Exception {
+
+        if(puntosLocal <0 || puntosVisitante <0) throw new Exception("Las puntuaciones no pueden ser negativas");
+        if(puntosLocal==puntosVisitante) throw new Exception("No se puede empatar.");
+
         this.puntosLocal = puntosLocal;
         this.puntosVisitante = puntosVisitante;
     }
