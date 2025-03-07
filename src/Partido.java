@@ -27,22 +27,6 @@ public class Partido implements Serializable {
         else return equipoVisitante;
     }
 
-    public Equipo getEquipoLocal() {
-        return equipoLocal;
-    }
-
-    public Equipo getEquipoVisitante() {
-        return equipoVisitante;
-    }
-
-    public int getPuntosLocal() {
-        return puntosLocal;
-    }
-
-    public int getPuntosVisitante() {
-        return puntosVisitante;
-    }
-
     @Override
     public String toString() {
         return equipoLocal.getNombre() + " " + puntosLocal + " - " + puntosVisitante + " " + equipoVisitante.getNombre();
