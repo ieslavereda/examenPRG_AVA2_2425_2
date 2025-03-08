@@ -32,6 +32,10 @@ public class Partido implements Serializable {
         if(puntosLocal>puntosVisitante) return equipoLocal;
         else return equipoVisitante;
     }
+    public Equipo getPerdedor() {
+        if(puntosLocal>puntosVisitante) return equipoVisitante;
+        else return equipoLocal;
+    }
 
     public Equipo getEquipoLocal() {
         return equipoLocal;
@@ -53,4 +57,6 @@ public class Partido implements Serializable {
     public String toString() {
         return equipoLocal.getNombre() + " " + puntosLocal + " - " + puntosVisitante + " " + equipoVisitante.getNombre();
     }
+
+
 }

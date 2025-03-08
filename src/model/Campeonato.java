@@ -74,7 +74,7 @@ public class Campeonato implements Jugable, Serializable {
             for(Partido p : partidos)
                 if(p.getGanador().equals(e))
                     clasificacion.get(e).ganaPartido();
-                else
+                else if(p.getPerdedor().equals(e))
                     clasificacion.get(e).pierdePartido();
 
         List<Clasificacion> clasificacionFinal = new ArrayList<>(clasificacion.values());
