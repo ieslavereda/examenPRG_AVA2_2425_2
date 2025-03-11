@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.*;
 
-public abstract class Equipo implements Comparable<Equipo>, Serializable {
+public abstract class Equipo implements Serializable {
 
     private String nombre;
     private Set<Jugador> jugadores;
@@ -43,11 +43,6 @@ public abstract class Equipo implements Comparable<Equipo>, Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(nombre);
-    }
-
-    @Override
-    public int compareTo(Equipo equipo) {
-        return nombre.compareToIgnoreCase(equipo.getNombre());
     }
 
 }
