@@ -50,7 +50,6 @@ public class Jugador implements Comparable<Jugador>, Serializable {
         return Objects.hash(nombre);
     }
 
-
     @Override
     public int compareTo(Jugador jugador) {
         return nombre.compareTo(jugador.getNombre());
